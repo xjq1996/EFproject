@@ -14,6 +14,7 @@ xmlns="http://xmlns.jcp.org/xml/ns/javaee"
   <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
    <filter>
+    <!-- gn -->
   <filter-name>encodingFilter</filter-name>
   <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
   </filter>
