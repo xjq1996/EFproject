@@ -34,5 +34,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/sqljdbc42.jar"/>
+	<classpathentry kind="lib" path="lib/mail.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
