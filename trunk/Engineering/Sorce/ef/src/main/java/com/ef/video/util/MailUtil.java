@@ -17,7 +17,7 @@ import javax.mail.internet.MimeMessage;
 
 import com.sun.mail.util.MailSSLSocketFactory;
 
-public class mail {
+public class MailUtil {
           public static void sendemail(String to,String text)
           {
         	  Properties props = new Properties();
