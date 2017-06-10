@@ -11,6 +11,8 @@ import javax.persistence.Table;
 @Entity
 @Table(name="ef_user")
 public class User extends BaseEntity {
+public final static Integer STATUS_YES = 1; //可用
+	public final static Integer STATUS_NO = 0; //不可用
 	private String username;
 	private String password;
     private Integer score;

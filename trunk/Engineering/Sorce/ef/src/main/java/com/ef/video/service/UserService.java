@@ -10,13 +10,16 @@ import com.ef.video.entity.User;
 public class UserService {
 	@Autowired
 	private UserDao userDao;
-public User findUserByUsername(String username){
-	return userDao.findUserByUsername(username);
+public User findUserBySno(String sno){
+	return userDao.findUserBySno(sno);
 }
 public User findUserByEmail(String email){
 	return userDao.findUserByEmail(email);
 }
-public User add(User user ){
-	return  null;
+public User save(User user ){
+	return userDao.save(user);
+}
+public User findUserByName(String username) {
+	return userDao.findUserByName(username);
 }
 }

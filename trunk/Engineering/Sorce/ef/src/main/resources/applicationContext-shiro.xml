@@ -54,7 +54,7 @@
 	             /images/** = anon
 	             /js/** = anon
 	             /authc/** = authc
-	             /** = rememberAuthFilter
+	             /** = anon
 	        </value>  
 	    </property>
 	</bean>  

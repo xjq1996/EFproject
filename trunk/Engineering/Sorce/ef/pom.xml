@@ -1,5 +1,7 @@
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+  >
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.ef</groupId>
   <artifactId>video</artifactId>
@@ -11,7 +13,7 @@
     <!-- 定义资源文件的编码格式-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- 依赖库版本定义-->
-    <video.version>1.0.0</video.version>
+    <ef.version>1.0.0</ef.version>
     <junit.version>4.12</junit.version>
     <spring.version>4.2.5.RELEASE</spring.version>
     <hibernate.version>4.3.5.Final</hibernate.version>
@@ -251,15 +253,7 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-    <!-- 单元测试框架 end --> 
-    <!--  该jar包引入自本地项目   -->
-   <dependency>
-	  <groupId>org.springside</groupId>  
-	  <artifactId>springside-core</artifactId>  
-	  <version>4.2.2.GA</version>  
-	  <scope>system</scope>  
-	  <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/springside-core-4.2.2.GA.jar</systemPath>  
-	</dependency>
+    <!-- 单元测试框架 end -->
   </dependencies>
   <build>
     <plugins>  
