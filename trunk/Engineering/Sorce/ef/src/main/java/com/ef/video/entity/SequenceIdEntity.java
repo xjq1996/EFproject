@@ -10,7 +10,6 @@ import org.hibernate.annotations.GenericGenerator;
 @MappedSuperclass
 public class SequenceIdEntity {
 	protected String id;
-
 	@Id
 	@Column(length = 32, nullable = true)
 	@GenericGenerator(name = "sys_uuid", strategy = "uuid")

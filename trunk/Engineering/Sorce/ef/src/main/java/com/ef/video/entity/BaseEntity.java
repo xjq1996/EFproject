@@ -4,17 +4,15 @@ import java.io.Serializable;
 import java.sql.Date;
 
 import javax.persistence.Column;
-
+import javax.persistence.MappedSuperclass;
+@MappedSuperclass
 public class BaseEntity extends SequenceIdEntity implements Serializable{
-/**
-	 * 
-	 */
 	private static final long serialVersionUID = -1287263291861081044L;
 //创建时间
 protected  Date createDate;
 //更新时间
 protected Date updateDate;
-@Column(name="create_date")
+@Column(name="create_date" ,updatable=false)
 public Date getCreateDate() {
 	return createDate;
 }

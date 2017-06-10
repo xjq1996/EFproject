@@ -11,7 +11,7 @@
     <!-- 定义资源文件的编码格式-->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- 依赖库版本定义-->
-    <tianti.version>1.0.0</tianti.version>
+    <video.version>1.0.0</video.version>
     <junit.version>4.12</junit.version>
     <spring.version>4.2.5.RELEASE</spring.version>
     <hibernate.version>4.3.5.Final</hibernate.version>
@@ -251,7 +251,15 @@
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
-    <!-- 单元测试框架 end -->
+    <!-- 单元测试框架 end --> 
+    <!--  该jar包引入自本地项目   -->
+   <dependency>
+	  <groupId>org.springside</groupId>  
+	  <artifactId>springside-core</artifactId>  
+	  <version>4.2.2.GA</version>  
+	  <scope>system</scope>  
+	  <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/springside-core-4.2.2.GA.jar</systemPath>  
+	</dependency>
   </dependencies>
   <build>
     <plugins>  
