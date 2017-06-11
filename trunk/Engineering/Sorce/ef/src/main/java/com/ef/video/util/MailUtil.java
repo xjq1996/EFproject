@@ -18,7 +18,7 @@ import javax.mail.internet.MimeMessage;
 import com.sun.mail.util.MailSSLSocketFactory;
 
 public class MailUtil {
-          public static void sendemail(String to,String text)
+          public static void sendemail(String to,String text,String serial)
           {
         	  Properties props = new Properties();
       		
@@ -39,7 +39,14 @@ public class MailUtil {
      			Message msg = new MimeMessage(session);
      			msg.setSubject(text);
      			StringBuilder builder = new StringBuilder();
+     			String ps=""+Math.random();
+     			String validator=MD5Util.encodeByMD5(ps) ;
+     			if(text.equals("注册成功"))
      			builder.append("hello git");
+     			else{
+     				builder.append("http://localhost:8080/video/user/validator.do?serial=");
+     				builder.append(serial);
+     			}
      			msg.setText(builder.toString());
      			msg.setFrom(new InternetAddress("lxw1314Snow@163.com"));
      			Transport transport = session.getTransport();

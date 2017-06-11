@@ -22,14 +22,6 @@ import com.ef.video.service.UserService;
 public class ShiroDBRealm extends AuthorizingRealm {
 	@Autowired
 	private UserService userService;
-
-	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		System.out.println("ShiroDBRealm: doGetAuthenticationInfo");
-		return info;
-	}
-
 	/**
 	 * 验证当前用户
 	 */
@@ -37,20 +29,27 @@ public class ShiroDBRealm extends AuthorizingRealm {
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
 			throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+		System.out.println(token.getUsername());
 		if (StringUtils.isEmpty(token.getUsername())) {
 			return null;
 		}
-		User user = userService.findUserByName(token.getUsername());
+		System.out.println(token.getUsername());
+		User user = userService.findUserBySno(token.getUsername());
 		if (user != null) {
-			if (user.getStatus() == User.STATUS_NO) {
+			if (user.getStatus() != User.STATUS_YES) {
 				throw new LockedAccountException();
 			}
-			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getUsername(), user.getPassword(),
-					getName());
-			setSession("session_login_user", user);
-
+			AuthenticationInfo authcInfo = new SimpleAuthenticationInfo(user.getSno(), user.getPassword(),getName());
+			setSession("user", user);
+			setSession("msg","登陆成功");
+			System.out.println(user.getStatus()+"yanzhengchengg"+getName()+"8888"+user.getSno()+user.getPassword());
+			if(authcInfo!=null)
 			return authcInfo;
+			else
+				System.out.println("验证失败");
+            return null;
 		}
+		System.out.println("验证失败");
 		return null;
 	}
 	private void setSession(Object key, Object value) {
@@ -61,6 +60,13 @@ public class ShiroDBRealm extends AuthorizingRealm {
 				session.setAttribute(key, value);
 			}
 		}
+	}
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		String username=(String) principals.getPrimaryPrincipal();
+		User user =userService.findUserByName(username);
+		
+		return null;
 	}
 
 }

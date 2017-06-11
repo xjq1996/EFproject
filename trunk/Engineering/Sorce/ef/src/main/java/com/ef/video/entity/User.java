@@ -29,7 +29,7 @@ public final static Integer STATUS_YES = 1; //可用
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	@Column(name="password",nullable=false,length=16)
+	@Column(name="password",nullable=false,length=40)
 	public String getPassword() {
 		return password;
 	}
@@ -51,7 +51,7 @@ public final static Integer STATUS_YES = 1; //可用
 	public void setProfession(Profession profession) {
 		this.profession = profession;
 	}
-	@Column(name="gender",length=2)
+	@Column(name="gender",length=10)
 	public String getGender() {
 		return gender;
 	}

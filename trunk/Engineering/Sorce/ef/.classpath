@@ -35,5 +35,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mail.jar"/>
 	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/sqljdbc42.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/springside-core-4.2.2.GA.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

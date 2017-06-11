@@ -10,4 +10,6 @@ public User findUserBySno(String sno);
 	public User findUserByEmail(String email);
 	@Query("select u from User u where u.username=?1")
 	public User findUserByName(String username);
+	@Query("update User u set u.status=1 where u.sno=?1")
+	public boolean update(String sno);
 }
