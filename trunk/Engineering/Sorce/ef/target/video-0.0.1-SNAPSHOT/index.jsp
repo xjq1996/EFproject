@@ -19,7 +19,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <div id="login">
     <div class="wrapper">
       <div class="login">
-        <form action="<%=path %>/login1.do" method="post" class="container offset1 loginform">
+        <form action="<%=path %>/login/login1.do" method="post" class="container offset1 loginform">
           <div id="owl-login">
             <div class="hand"></div>
             <div class="hand hand-r"></div>
@@ -44,8 +44,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </div>
           </div>
           <div class="form-actions">
-            <a href="<%=path %>/forget.jsp" tabindex="5" class="btn pull-left btn-link text-muted">忘记密码?</a>
-            <a href="<%=path %>/register.jsp" tabindex="6" class="btn btn-link text-muted">注册</a>
+            <input checked="checked" type="checkbox" name="rememberMe"/>记住密码
+            <a href="<%=path %>/all/forget.jsp" tabindex="5" class="btn pull-left btn-link text-muted">忘记密码?</a>
+            <a href="<%=path %>/all/register.jsp" tabindex="6" class="btn btn-link text-muted">注册</a>
             <button type="submit" tabindex="4" class="btn btn-primary">登录</button>
           </div>
         </form>

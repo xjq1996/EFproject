@@ -13,6 +13,7 @@
 	>
 
 	<description>shiro配置</description>
+
 	<!-- 记住我 -->
 	<!-- 会话Cookie模板 -->  
 	<bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">  
@@ -25,7 +26,7 @@
 	    <property name="httpOnly" value="true"/>  
 	    <property name="maxAge" value="2592000"/><!-- 30天 -->  
 	</bean>
-	<!-- rememberMe管理器 -->  
+	<!-- rememberMe管理器 cipherKey是加密rememberMe Cookie的密钥；默认AES算法； -->  
 	<bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">  
 	    <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>  
 	    <property name="cookie" ref="rememberMeCookie"/>  
@@ -46,15 +47,44 @@
 	    <property name="filterChainDefinitions">  
 	        <value>
 	             / = anon
-	             /user/**=anon
 	        	 /index = anon
-	             /login = anon
+	        	 /view/**=anon
+	             /login/**= anon
+	             /cmsController/normal/article/list.do**=anon
+	             /common/**=anon
+	             /BBS/index.jsp=anon
+	             /BBS/get**=anon
+	             /user/register.do = anon
+	             /user/modify.do = anon
+	             /user/update.do = anon	      
+	             /user/save.do = anon	             
+	             /user/validator.do = anon
+	             /web_/**=anon
+	             /admin/**=roles[admin]
+	             /*/admin/**=roles[admin]
+	             /*/normal/**=roles[normal]
+	             /normal/**=roles[normal]
+	    		 /web/normal/**=roles[normal]
+	    		 /web/admin/**=roles[admin]
+	    		 /role/**=roles[admin]
+	    		 /resource/**=roles[admin]
+	    		 /user/add**=perms[admin:add]
+	             /plugins/**=anon
+	             /roles/**=anon
+	             /users/**=anon
+	             /upload/**=perms[upload]
+	             /uploads/attach/**=perms[download]
+	             /downloads/**=anon
+	             /assets/**=anon
+	             /cms/**=anon
+	             /font/**=anon
+	             /img/**=anon
+	             /all/**=anon
 	             /css/** = anon
 	             /html/** = anon
 	             /images/** = anon
 	             /js/** = anon
-	             /authc/** = authc
-	             /** = anon
+	            /** = rememberAuthFilter
 	        </value>  
 	    </property>
 	</bean>  

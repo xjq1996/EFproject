@@ -1,5 +1,7 @@
 package com.ef.video.shiro;
 
+import java.util.Set;
+
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -16,6 +18,8 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ef.video.entity.Resource;
+import com.ef.video.entity.Role;
 import com.ef.video.entity.User;
 import com.ef.video.service.UserService;
 
@@ -28,6 +32,7 @@ public class ShiroDBRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
 			throws AuthenticationException {
+		System.out.println("doGetAuthenticationInfo-------------------------");
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		System.out.println(token.getUsername());
 		if (StringUtils.isEmpty(token.getUsername())) {
@@ -43,11 +48,7 @@ public class ShiroDBRealm extends AuthorizingRealm {
 			setSession("user", user);
 			setSession("msg","登陆成功");
 			System.out.println(user.getStatus()+"yanzhengchengg"+getName()+"8888"+user.getSno()+user.getPassword());
-			if(authcInfo!=null)
 			return authcInfo;
-			else
-				System.out.println("验证失败");
-            return null;
 		}
 		System.out.println("验证失败");
 		return null;
@@ -61,11 +62,36 @@ public class ShiroDBRealm extends AuthorizingRealm {
 			}
 		}
 	}
+	/**
+	 * 授权
+	 */
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		String username=(String) principals.getPrimaryPrincipal();
-		User user =userService.findUserByName(username);
-		
+		String username=(String)principals.getPrimaryPrincipal();
+		System.out.println("doGetAuthorizationInfo :username:"+username);
+		User user=userService.findUserByName(username);
+		if(user!=null){
+			System.out.println("user :"+user);
+			Role role=user.getRole();
+			if(role!=null){
+		 System.out.println("user.getRole:  "+role);
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		info.addRole(user.getRole().getName());
+		Set <Resource> resources=role.getResources();
+		if(resources.size()>0&&resources!=null){
+			for (Resource resource:resources){
+				info.addStringPermission(resource.getName());
+				System.out.println("resource.getName():"+resource.getName());
+			}
+			return info;
+		}else{
+			System.out.println("用户："+user.getSno()+"拥有角色"+user.getRole()+" 没有权限");
+		}
+		return info;
+				}else{
+				System.out.println(user.getSno()+"user.getRole=null");
+			}
+		}
 		return null;
 	}
 

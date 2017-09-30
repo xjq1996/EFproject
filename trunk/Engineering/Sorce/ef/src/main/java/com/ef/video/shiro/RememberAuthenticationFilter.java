@@ -15,7 +15,7 @@ public class RememberAuthenticationFilter extends FormAuthenticationFilter{
 	protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
 		
 		Subject subject = getSubject(request, response);
-		
+		System.out.println("-------------authorfilter   isAuthenticated="+subject.isAuthenticated()+" subject.isRemembered()= "+subject.isRemembered());
 		return subject.isAuthenticated() || subject.isRemembered();
 	}
 

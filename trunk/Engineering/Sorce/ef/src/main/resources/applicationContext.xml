@@ -13,6 +13,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:component-scan base-package="com.ef.video"></context:component-scan>
+	<!-- 配置上传文件MultipartResolver-->
 	<!-- Jpa Entity Manager 配置 -->
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -41,7 +42,7 @@
 			</bean>
 		</property>
 		<property name="generateDdl" value="true" />
-		<property name="showSql" value="false" />
+		<property name="showSql" value="true" />
 	</bean>
 
 	<!-- Spring Data Jpa配置 -->
@@ -83,6 +84,7 @@
 	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
+	
 	<beans profile="production">
 		<context:property-placeholder
 			ignore-unresolvable="true" location="classpath*:/jdbc.properties" />

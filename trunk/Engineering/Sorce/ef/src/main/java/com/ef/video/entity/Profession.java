@@ -20,7 +20,7 @@ public String getName() {
 public void setName(String name) {
 	this.name = name;
 }
-@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
+@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 @JoinColumn(name="academy_Id")
 public Academy getAcademy() {
 	return academy;

@@ -1,15 +1,23 @@
 package com.ef.video.entity;
 
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ef_user")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class User extends BaseEntity {
 public final static Integer STATUS_YES = 1; //可用
 	public final static Integer STATUS_NO = 0; //不可用
@@ -22,6 +30,8 @@ public final static Integer STATUS_YES = 1; //可用
 	private Integer status;//状态是否激活
 	private Role role;//0为管理员
 	private String email;//邮箱qq或者163
+	private Set<Topic>topic;
+	
 	@Column(name="username", unique=true,nullable=false,length=16)
 	public String getUsername() {
 		return username;
@@ -79,13 +89,52 @@ public final static Integer STATUS_YES = 1; //可用
 	public void setScore(Integer score) {
 		this.score = score;
 	}
-	@ManyToOne(cascade=CascadeType.ALL)
-	@JoinColumn(name="role")
+	@ManyToOne()
+	@JoinColumn(name="role" )
 	public Role getRole() {
 		return role;
 	}
 	public void setRole(Role role) {
 		this.role = role;
 	}
-
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinTable(name = "bbs_user_topic", 
+	joinColumns = {@JoinColumn(name = "user_id")},
+	inverseJoinColumns = {@JoinColumn(name = "topic_id")})
+		public Set<Topic> getTopic() {
+		return topic;
+	}
+	public void setTopic(Set<Topic> topic) {
+		this.topic = topic;
+	}
+	@Override
+	public String toString() {
+		return "User [username=" + username + ", password=" + password + ", score=" + score + ", sno=" + sno
+				+ ", profession=" + profession + ", gender=" + gender + ", status=" + status + ", role=" + role
+				+ ", email=" + email + "]"+id;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((this.id == null) ? 0 : this.id.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (this.id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!this.id.equals(other.id))
+			return false;
+		return true;
+	}
+	
 }

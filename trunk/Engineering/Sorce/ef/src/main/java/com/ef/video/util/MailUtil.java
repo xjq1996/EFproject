@@ -4,11 +4,9 @@ import java.security.GeneralSecurityException;
 import java.util.Properties;
 
 import javax.mail.Address;
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.NoSuchProviderException;
-import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.AddressException;
@@ -44,7 +42,9 @@ public class MailUtil {
      			if(text.equals("注册成功"))
      			builder.append("hello git");
      			else{
-     				builder.append("http://localhost:8080/video/user/validator.do?serial=");
+     				builder.append("http://www.lxwgsy.top:8080/video/user/validator.do?serial=");
+
+     			//	builder.append("http://localhost:8080/video/user/validator.do?serial=");
      				builder.append(serial);
      			}
      			msg.setText(builder.toString());

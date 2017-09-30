@@ -33,8 +33,10 @@
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/mail.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/sqljdbc42.jar"/>
-	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/springside-core-4.2.2.GA.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/webapp/WEB-INF/lib/sqljdbc42.jar"/>
+	<classpathentry exported="true" kind="lib" path="src/main/webapp/WEB-INF/lib/springside-core-4.2.2.GA.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/pager-taglib.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/ueditor-1.1.1.jar"/>
+	<classpathentry kind="lib" path="src/main/webapp/WEB-INF/lib/statistics-1.0.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

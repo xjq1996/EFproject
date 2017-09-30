@@ -8,6 +8,7 @@ import javax.persistence.MappedSuperclass;
 @MappedSuperclass
 public class BaseEntity extends SequenceIdEntity implements Serializable{
 	private static final long serialVersionUID = -1287263291861081044L;
+	
 //创建时间
 protected  Date createDate;
 //更新时间
