@@ -1,8 +1,10 @@
 package com.ef.video.controller;
 
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ef.video.dto.AjaxResult;
 import com.ef.video.dto.ArticleQueryDto;
+import com.ef.video.dto.CurrentArticleInfoDTO;
 import com.ef.video.entity.Article;
 import com.ef.video.entity.Page;
 import com.ef.video.service.ArticleService;
@@ -216,15 +218,11 @@ try {
 			String summary = request.getParameter("summary");
 			String coverImageUrl = request.getParameter("coverImageUrl");
 			String href = request.getParameter("href");
-			String orderNoStr = request.getParameter("orderNo");
 			String articleTypeStr = request.getParameter("articleType");
 		   
 			Article article = null;
-			Integer orderNo = null;
+			Integer orderNo = articleService.getNumber()+1;
 			Integer articleType = null;
-			if(StringUtils.isNotBlank(orderNoStr)){
-				orderNo = Integer.parseInt(orderNoStr);
-			}
 			if(StringUtils.isNotBlank(articleTypeStr)){
 				if(articleTypeStr.equals("contentType")){
 					articleType = 0;
@@ -365,6 +363,93 @@ try {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return ajaxResult;
+	}
+	
+	/**
+	 * 获取下一篇文章详情
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/article/next")
+	@ResponseBody
+	public AjaxResult getNextArticle(HttpServletRequest request,HttpServletResponse response){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+		AjaxResult ajaxResult = new AjaxResult();
+		//当前文章ID
+		String currentArticleId = request.getParameter("currentArticleId");
+		String articleDateStr = request.getParameter("articleDate");
+		String orderNoStr = request.getParameter("orderNo");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Article nextArticle = null;
+		Date articleDate = null;
+		Integer orderNo = null;
+		if(StringUtils.isNotBlank(articleDateStr)){
+			
+				try {
+					articleDate = sdf.parse(articleDateStr);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		if(StringUtils.isNotBlank(orderNoStr)){
+			orderNo = Integer.parseInt(orderNoStr);
+		}
+		CurrentArticleInfoDTO currentArticleInfoDTO = new CurrentArticleInfoDTO();
+		currentArticleInfoDTO.setArticleId(currentArticleId);
+		currentArticleInfoDTO.setArticleDate(articleDate);
+		currentArticleInfoDTO.setOrderNo(orderNo);
+		nextArticle=this.articleService.queryNextArticle(currentArticleInfoDTO);
+		ajaxResult.setSuccess(true);
+		ajaxResult.setData(nextArticle);
+		return ajaxResult;
+	}
+	
+	/**
+	 * 获取上一篇文章详情
+	 * @param request
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/article/pre")
+	@ResponseBody
+	public AjaxResult getPreArticle(HttpServletRequest request,HttpServletResponse response){
+		response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
+		AjaxResult ajaxResult = new AjaxResult();
+		//当前文章ID
+		String currentArticleId = request.getParameter("currentArticleId");
+		String articleDateStr = request.getParameter("articleDate");
+		String orderNoStr = request.getParameter("orderNo");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Article preArticle = null;
+		Date articleDate = null;
+		Integer orderNo = null;
+		if(StringUtils.isNotBlank(articleDateStr)){
+			try {
+				articleDate = sdf.parse(articleDateStr);
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if(StringUtils.isNotBlank(orderNoStr)){
+			orderNo = Integer.parseInt(orderNoStr);
+		}
+		CurrentArticleInfoDTO currentArticleInfoDTO = new CurrentArticleInfoDTO();
+		currentArticleInfoDTO.setArticleId(currentArticleId);
+		currentArticleInfoDTO.setArticleDate(articleDate);
+		currentArticleInfoDTO.setOrderNo(orderNo);
+		preArticle = this.articleService.queryPreArticle(currentArticleInfoDTO);
+		ajaxResult.setSuccess(true);
+		ajaxResult.setData(preArticle);
 		return ajaxResult;
 	}
 

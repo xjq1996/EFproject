@@ -111,6 +111,8 @@
       </div>
     </div>
   </div>
+  <a href="<%=path%>/article/pre.do">上一篇</a>
+  <a href="<%=path%>/article/next.do">下一篇1</a>
   <a href="#sidebar" class="am-btn am-btn-sm am-btn-success am-icon-bars am-show-sm-only my-button" data-am-offcanvas><span class="am-sr-only">侧栏导航</span></a>
 </div>
 

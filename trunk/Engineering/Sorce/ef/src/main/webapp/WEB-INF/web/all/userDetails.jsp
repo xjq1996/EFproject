@@ -90,6 +90,12 @@
               </div>
             </div>
             <div class="am-form-group">
+              <label for="user-intro" class="am-u-sm-3 am-form-label">积分</label>
+              <div class="am-u-sm-9">
+                <input type="text" class="" rows="5" id="user-intro" value="${user.score }">
+              </div>
+            </div>
+            <div class="am-form-group">
               <div class="am-u-sm-9 am-u-sm-push-3">
                 <input type="submit" class="am-btn am-btn-primary" value="修改个人信息">
               </div>

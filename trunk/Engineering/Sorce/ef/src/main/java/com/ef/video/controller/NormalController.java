@@ -28,9 +28,8 @@ public class NormalController {
 		User user=userService.findUserBySno(sno);
 		if(user!=null){
 			Integer score=user.getScore();
-		if(score>=50){
+		if(score>=0){
 			user.setScore(score-50);
-			userService.delete(user);
 			userService.save(user);
 			mav.setViewName("web/normal/video/main");
 		}else {

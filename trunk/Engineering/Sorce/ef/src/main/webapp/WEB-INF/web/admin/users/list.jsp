@@ -55,7 +55,6 @@
 						<tr>
 							<td>${user.sno}</td>
 							<td><input type="hidden" name="userId" value="${user.id }">${user.role.name }</td>
-							
 							<td><a href="<%=path%>/user/detele.do?id=${user.id}">删除</a>
 								<a href="<%=path%>/user/addRole.do?userId=${user.id}">更改角色</a></td>
 							

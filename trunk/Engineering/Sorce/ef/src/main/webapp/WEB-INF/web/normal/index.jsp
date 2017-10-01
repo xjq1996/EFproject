@@ -98,7 +98,7 @@
 <header class="am-topbar am-topbar-fixed-top">
   <div class="am-container">
     <h1 class="am-topbar-brand">
-      <a href="#">EF </a>
+      <a href="<%=path%>/">EF </a>
     </h1>
 
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
@@ -127,15 +127,15 @@
       <div class="am-topbar-right">
       <shiro:user>已登录，欢迎 <shiro:principal></shiro:principal>观看 </shiro:user>
       <div class="m_item">
-			<div class="p_list">
-					<div class="p_list"><shiro:user>
-								<div class="l_item border">
-									<a href="<%=path %>/login/logout.do"><i class="icon"></i><span>退出</span></a>
-								</div></shiro:user>
-							</div>
-						</div>
-					</div>
-				</div>
+      <div class="p_list">
+          <div class="p_list"><shiro:user>
+                <div class="l_item border">
+                  <a href="<%=path %>/login/logout.do"><i class="icon"></i><span>退出</span></a>
+                </div></shiro:user>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 </header>

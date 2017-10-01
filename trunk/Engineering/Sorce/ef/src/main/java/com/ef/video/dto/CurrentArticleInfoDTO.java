@@ -7,9 +7,6 @@ public class CurrentArticleInfoDTO {
 	//文章ID
 	private String articleId;
 	
-	//文章所属栏目ID
-	private String columnId;
-	
 	//时间
 	private Date articleDate;
 	
@@ -22,14 +19,6 @@ public class CurrentArticleInfoDTO {
 
 	public void setArticleId(String articleId) {
 		this.articleId = articleId;
-	}
-
-	public String getColumnId() {
-		return columnId;
-	}
-
-	public void setColumnId(String columnId) {
-		this.columnId = columnId;
 	}
 
 	public Date getArticleDate() {

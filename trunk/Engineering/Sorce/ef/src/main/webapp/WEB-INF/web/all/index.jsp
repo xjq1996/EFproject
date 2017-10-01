@@ -100,28 +100,28 @@
     <h1 class="am-topbar-brand">
       <a href="#">EF </a>
     </h1>
+
     <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-secondary am-show-sm-only"
             data-am-collapse="{target: '#collapse-head'}"><span class="am-sr-only">导航切换</span> <span
         class="am-icon-bars"></span></button>
 
     <div class="am-collapse am-topbar-collapse" id="collapse-head">
       <ul class="am-nav am-nav-pills am-topbar-nav">
-        <li class="am-active"><a href="<%=path%>/">首页</a></li>
-        <li><a href="<%=path%>/cmsController/normal/article/list.do?type=tongguo">新闻中心</a></li>
+        <li class="am-active"><a href="#">首页</a></li>
         <li class="am-dropdown" data-am-dropdown>
           <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
             项目 <span class="am-icon-caret-down"></span>
           </a>
           <ul class="am-dropdown-content">
             <li class="am-dropdown-header">项目</li>
-            <li><a href="<%=path %>/BBS/getAllTopic.do?type=tongguo">1. 论坛系统</a></li>
-            <li><a href="#">2. 项目2</a></li>
-            <li><a href="#">3. 项目3</a></li>
-            <li><a href="#">4. 项目4</a></li>
+                    <li><a href="<%=path%>/cmsController/normal/article/list.do?type=tongguo">1.新闻中心</a></li>
+            <li><a href="<%=path %>/BBS/getAllTopic.do?type=tongguo">2. 论坛系统</a></li>
           </ul>
         </li>
       </ul>
 
+      <div class="am-topbar-right">
+      <shiro:notAuthenticated>
       <div class="am-topbar-right">
         <a href="<%=path %>/web_/all/register.jsp" class="am-btn am-btn-secondary am-topbar-btn am-btn-sm"><span class="am-icon-pencil"></span> 注册</a>
       </div>
@@ -131,8 +131,20 @@
         <div class="am-topbar-right">
         <a href="<%=path %>/web_/admin/login.jsp" class="am-btn am-btn-primary am-topbar-btn am-btn-sm"><span class="am-icon-user"></span>管理员登录</a>
       </div>
+      </shiro:notAuthenticated>
+      <shiro:user>已登录，欢迎 <shiro:principal></shiro:principal>观看 </shiro:user>
+      <div class="m_item">
+      <div class="p_list">
+          <div class="p_list"><shiro:user>
+                <div class="l_item border">
+                  <a href="<%=path %>/login/logout.do"><i class="icon"></i><span>退出</span></a>
+                </div></shiro:user>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
 </header>
 
 <div class="get">
@@ -140,7 +152,7 @@
     <div class="am-u-lg-12">
       <h1 class="get-title">EF 团队  携手共进</h1>
       <p>
-        <a href="<%=path %>/web_/normal/login.jsp" class="am-btn am-btn-sm get-btn">获取新get技能√看直播</a>
+        <a href="<%=path %>/" class="am-btn am-btn-sm get-btn">获取新get技能√看直播</a>
       </p>
     </div>
   </div>
@@ -250,6 +262,7 @@
 </div>
 
 <footer class="footer">
+  <p>当前在线人数：${userNumber }   &nbsp; &nbsp;  &nbsp;  &nbsp;  &nbsp;     访问总人次：${allNumber }</p>
   <p>© 2017 <a href="http://www.yunshipei.com" target="_blank">AllMobilize, Inc.</a> Licensed under <a
       href="http://opensource.org/licenses/MIT" target="_blank">MIT license</a>. by the AmazeUI Team.</p>
 </footer>

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.ef.video.dao.ArticleDao;
@@ -22,15 +23,15 @@ public class ArticleService extends CommonService< Article,String >  {
     public void setArticleDao(ArticleDao articleDao){
       super.setCommonDao(articleDao);
     }
-
+    @Cacheable(value="video_cache",key="'cms_page'")
     public Page<Article> queryArticlePage(ArticleQueryDto articleQueryDTO){
            return this.articleDao.queryArticlePage(articleQueryDTO);
     }
-
+    @Cacheable(value="video_cache",key="'cms_list'")
     public List<Article> queryArticleList(ArticleQueryDto articleQueryDTO){
            return this.articleDao.queryArticleList(articleQueryDTO);
     }
-    
+    @Cacheable(value="video_cache",key="'cms_map'")
     public List<Map<String, Object>> queryStatisMapList(ArticleQueryDto articleQueryDTO){
     	   return this.articleDao.queryStatisMapList(articleQueryDTO);
     }
@@ -52,6 +53,10 @@ public class ArticleService extends CommonService< Article,String >  {
     	   }
     	   return article;
     }
+
+	public Integer getNumber() {
+		return articleDao.getNumber();
+	}
 
 
 }

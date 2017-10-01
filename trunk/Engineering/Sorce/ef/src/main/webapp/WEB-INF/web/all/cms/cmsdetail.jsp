@@ -105,16 +105,16 @@
     <div class="am-g">
       <div class="am-u-sm-11 am-u-sm-centered">
         <div class="am-cf am-article">
-          <div class="am-align-left">
-          </div>
           <p>${article.content }</p>
+          <div class="am-align-left">
+           <a href="<%=path%>/cmsController/article/pre.do?currentArticleId=${article.id }&articleDate=${article.createDate}&orderNo=${article.orderNo}">上一篇</a>
+  			<a href="<%=path%>/cmsController/article/next.do?currentArticleId=${article.id }&articleDate=${article.createDate}&orderNo=${article.orderNo}">下一篇</a>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <a href="#sidebar" class="am-btn am-btn-sm am-btn-success am-icon-bars am-show-sm-only my-button" data-am-offcanvas><span class="am-sr-only">侧栏导航</span></a>
 </div>
-
 <footer class="my-footer">
   <p>sidebar template<br><small>© Copyright XXX. by the AmazeUI Team.</small></p>
 </footer>

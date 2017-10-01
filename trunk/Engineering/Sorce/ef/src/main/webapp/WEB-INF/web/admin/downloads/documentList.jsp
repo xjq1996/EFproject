@@ -47,7 +47,7 @@
         </div>
       </div>
     </div>
-    <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="<%=path %>/js/jquery-3.1.0.min.js"></script>
     <script type="text/javascript">
       $(function(){
         var email=$("#email"),

@@ -127,10 +127,7 @@ public class ArticleDaoImpl extends CustomBaseSqlDaoImpl implements ArticleDaoCu
     		hql.append(" and a.id <> :articleId ");
     		map.put("articleId", currentArticleInfoDTO.getArticleId());
     	}
-    	if(StringUtils.isNotBlank(currentArticleInfoDTO.getColumnId())){
-    		hql.append(" and a.columnInfo.id = :columnInfoId ");
-    		map.put("columnInfoId", currentArticleInfoDTO.getColumnId());
-    	}
+    	
     	if(currentArticleInfoDTO.getArticleDate() != null){
     		hql.append(" and a.createDate < :date ");
     		map.put("date", currentArticleInfoDTO.getArticleDate());
@@ -151,10 +148,6 @@ public class ArticleDaoImpl extends CustomBaseSqlDaoImpl implements ArticleDaoCu
     		hql.append(" and a.id <> :articleId ");
     		map.put("articleId", currentArticleInfoDTO.getArticleId());
     	}
-    	if(StringUtils.isNotBlank(currentArticleInfoDTO.getColumnId())){
-    		hql.append(" and a.columnInfo.id = :columnInfoId ");
-    		map.put("columnInfoId", currentArticleInfoDTO.getColumnId());
-    	}
     	if(currentArticleInfoDTO.getArticleDate() != null){
     		hql.append(" and a.createDate > :date ");
     		map.put("date", currentArticleInfoDTO.getArticleDate());
@@ -164,6 +157,7 @@ public class ArticleDaoImpl extends CustomBaseSqlDaoImpl implements ArticleDaoCu
     		map.put("orderNo", currentArticleInfoDTO.getOrderNo());
     		hql.append(" order by a.orderNo asc ");
     	}
+    	System.out.println(hql.toString());
     	return this.queryByMapParams(hql.toString(), map);
     }
 
